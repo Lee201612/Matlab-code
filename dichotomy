@@ -1,0 +1,29 @@
+function y=erfen27(fun,a,b,esp)
+if nargin<4    %ÊäÈë±äÁ¿¸öÊý
+    esp=1e-6;
+end
+if feval(fun,a)*feval(fun,b)<0
+    n=1;
+    c=(a+b)/2;
+    while c>esp
+        if feval(fun,a)*feval(fun,c)<0
+            b=c;c=(a+b)/2;
+        elseif feval(fun,c)*feval(fun,b)<0
+            a=c;c=(a+b)/2;
+        else y=c;
+            esp=10000;
+        end
+        n=n+1;
+    end
+    y=c;
+elseif feval(fun,a)==0
+    y=a;
+elseif feval(fun,b)==0
+    y=b;
+else disp('error');
+end 
+n
+
+
+function y=fc27(x)
+y=x^2-x-1
